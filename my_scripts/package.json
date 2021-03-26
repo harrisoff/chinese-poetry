@@ -1,0 +1,17 @@
+{
+  "name": "my_scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "parse:ci": "node ci/index.js",
+    "parse:poetry": "node poetry/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-beautify": "^1.1.1",
+    "uuid": "^8.3.2"
+  }
+}
