@@ -32,6 +32,8 @@ async function main() {
   const noStrainsList = allPoetry.filter(p => !p.strains)
 
   console.log(`诗 ${allPoetry.length} 条`)
+  console.log(`唐诗 ${tangPoetryList.length} 条`)
+  console.log(`宋诗 ${songPoetryList.length} 条`)
   console.log(`无平仄 ${noStrainsList.length} 条`)
   console.log(`诗人 ${authorList.length} 条`)
   console.log(`未收录诗人 ${otherAuthors.length} 条`)

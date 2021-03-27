@@ -23,9 +23,11 @@ async function getCi() {
   const resultArray = await Promise.all(task);
   return resultArray
     .flat()
-    .map(c => {
+    .map(({ tags, rhythmic, ...rest }) => {
       return {
-        ...c,
+        ...rest,
+        title: rhythmic,
+        tags: tags || [],
         _id: v4()
       }
     });

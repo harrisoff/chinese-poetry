@@ -1,45 +1,63 @@
 # my_scripts
 
-整合 json 到一个文件（然后准备导入到 mongodb）
+诗词和作者分别整合到一个文件（然后准备导入到 mongodb）
 
-## /ci
+```bash
+npm run parse:all
+```
+
+首先分别合并词的目录 `/ci` 和诗的目录 `/json`，然后再次合并。
+
+## 词和作者
 
 ```ts
-// _author.full.json
-interface Author {
-  description: string;
-  name: string;
-  short_description: string;
+// /ci/_author.full.json
+interface CiAuthor {
   _id: string;
+  name: string;
+  description: string;
+  short_description: string;
 }
 
-// _ci.full.json
+// /ci/_ci.full.json
 interface Ci {
+  _id: string;
+  title: string;
   author: string;
   paragraphs: string[];
-  rhythmic: string;
-  _id: string;
+  tags: string[];
 }
 ```
 
-## /json
+## 诗和作者
 
 ```ts
-// _author.full.json
-interface Author {
+// /json/_author.full.json
+interface PoetryAuthor {
   _id: string;
   name: string;
   description: string;
+  short_description: '';
   dynasty: 'tang' | 'song';
 }
 
-// _poetry.full.json
+// /json/_poetry.full.json
 interface Poetry {
+  _id: string;
+  title: string;
   author: string;
   paragraphs: string[];
-  title: string;
-  _id: string;
-  dynasty: 'tang' | 'song';
+  tags: string[];
   strains: string[];
+  dynasty: 'tang' | 'song';
 }
+```
+
+## 全部
+
+```ts
+// /_author.full.json
+type Author = CiAuthor & { type: 'ci' } | PoetryAuthor & { type: 'poetry' }
+// /_poetry-ci.full.json
+type PoetryAndCi = Ci & { type: 'ci' } | Poetry & { type: 'poetry' }
 ```

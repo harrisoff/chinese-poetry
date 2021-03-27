@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "parse:ci": "node ci/index.js",
-    "parse:poetry": "node poetry/index.js"
+    "parse:poetry": "node poetry/index.js",
+    "parse:all": "npm run parse:ci&&npm run parse:poetry&&node all.js"
   },
   "keywords": [],
   "author": "",

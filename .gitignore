@@ -4,3 +4,4 @@ node_modules
 _author.full.json
 _ci.full.json
 _poetry.full.json
+_poetry-ci.full.json

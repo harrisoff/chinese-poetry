@@ -23,11 +23,12 @@ async function getPoetryList(dynasty) {
   const resultArray = await Promise.all(task);
   return resultArray
     .flat()
-    .map(({ id, ...rest }) => {
+    .map(({ id, tags, ...rest }) => {
       return {
         ...rest,
         _id: id,
-        dynasty
+        dynasty,
+        tags: tags || [],
       }
     });
 }
@@ -57,11 +58,11 @@ function genStrainsMap(strainsList) {
 
 function addStrains(poetryList, strainsMap) {
   return poetryList.map((p) => {
-    // 文档说 poet 和 strains 是一一对应的
+    // 文档说 poet 和 strains 是按顺序一一对应的
     // 并不是！
     return {
       ...p,
-      strains: strainsMap[p._id]
+      strains: strainsMap[p._id] || []
     }
   })
 }

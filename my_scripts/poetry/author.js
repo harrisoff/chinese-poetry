@@ -17,6 +17,7 @@ async function getAuthors() {
         _id: id,
         name,
         description: desc,
+        short_description: '',
         dynasty: 'tang',
       }
     }),
